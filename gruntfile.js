@@ -11,7 +11,8 @@ module.exports = function (grunt) {
         src: 'src',
         dist: 'dist',
         test: 'test',
-        lib: 'test/lib'
+        lib: 'test/lib',
+        i18n: 'test/i18n'
     };
 
     grunt.initConfig({
@@ -69,6 +70,7 @@ module.exports = function (grunt) {
             src: [
                 '<%= config.lib %>/mithril/mithril.js' ,
                 '<%= config.lib %>/mithril/mock.js' ,
+                '<%= config.i18n %>/translation.js',
                 '<%= config.src %>/mithril-translate.js'
             ],
             options: {
@@ -94,3 +96,4 @@ module.exports = function (grunt) {
     grunt.registerTask('build', [ 'clean:dist', 'copy:dist', 'uglify' ]);
 
 };
+

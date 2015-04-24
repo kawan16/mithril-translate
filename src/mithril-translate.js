@@ -6,7 +6,6 @@
 
     window.mx = window.mx ||  {};
 
-
     /**
      * Storage constructor
      */
@@ -18,8 +17,46 @@
             },
             get: function( name ) {
                 var translations = JSON.parse( _store_[ currentLanguage ] );
-                return translations[name];
+                var result = translations;
+                name
+                    .split('.')
+                    .forEach( function( property ) {
+                        result = result[ property ];
+                    });
+                return result;
             }
+        }
+    };
+
+
+    /*
+     * Validators for router function
+     */
+    var validators = {
+        /**
+         * Check whether the given parameter is a string
+         * @param {String} string
+         * @returns {String} value
+         * @throws {TypeError} for non strings
+         */
+        string : function(string){
+            if(typeof string !== 'string'){
+                throw new TypeError('a string is expected, but ' + string + ' [' + (typeof string) + '] given');
+            }
+            return string;
+        },
+
+        /**
+         * Check whether the given parameter is a plain object (array and functions aren't accepted)
+         * @param {Object} object
+         * @returns {Object} object
+         * @throws {TypeError} for non object
+         */
+        plainObject : function(object){
+            if(typeof object !== 'object' ){
+                throw new TypeError('an object is expected, but ' + object + '  [' + (typeof object) + '] given');
+            }
+            return object;
         }
     };
 
@@ -42,6 +79,7 @@
      * Returns the translation of a given item name in the optional given or current language
      */
     mx.translate = function( item ) {
+        validators.string( item );
         return storage.get( item );
     };
 
@@ -49,6 +87,7 @@
      * Loads the translations files for the given folder
      */
     mx.translate.configure = function( options ) {
+        validators.plainObject( options );
         configuration = options;
     };
 
@@ -57,6 +96,7 @@
      */
     mx.translate.use = function( languageToUse ) {
         if( languageToUse && currentLanguage !== languageToUse ) {
+            validators.string( languageToUse );
             $load( languageToUse );
         } else {
             return currentLanguage;
@@ -85,7 +125,7 @@
      * Returns the configuration suffix option
      */
     function $suffix() {
-        return configuration.prefix || '';
+        return configuration.suffix || '';
     }
 
 
