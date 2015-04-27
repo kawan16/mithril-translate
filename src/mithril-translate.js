@@ -13,10 +13,10 @@
         var _store_ = {};
         return {
             set: function( item ) {
-                _store_[ currentLanguage ] = JSON.stringify( item );
+                _store_[ currentLanguage ] = item;
             },
             get: function( name ) {
-                var translations = JSON.parse( _store_[ currentLanguage ] );
+                var translations =  _store_[ currentLanguage ];
                 var result = translations;
                 name
                     .split('.')
