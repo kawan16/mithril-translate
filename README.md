@@ -5,5 +5,8 @@ Mithril Translate is a library which allows to internationalize your mithril app
 
 ## Get Started
 
+## Demo
+
+Take a look at http://kawan16.github.io/mithril-translate/
 
 ## How to use it
