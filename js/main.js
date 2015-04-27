@@ -2,7 +2,7 @@
 
 /* Set up Mithril translate */
 
- mx.translate.configure( { infix: '/data/' , suffix: '.json' });
+ mx.translate.configure( { infix: '/mithril-translate/data/' , suffix: '.json' });
  mx.translate.use( 'en' );
 
 
