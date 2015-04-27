@@ -48,7 +48,7 @@ content.view = function( controller ) {
                     m ( 'img' ,
                         {
                             class: '.ui.small.image',
-                            src: '/img/prince.jpg'
+                            src: '/mithril-translate/img/prince.jpg'
                         }
                     )
                 ),
