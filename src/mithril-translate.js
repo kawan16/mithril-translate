@@ -10,19 +10,42 @@
      * Storage constructor
      */
     var Storage = function( ) {
-        var _store_ = {};
+        var store = {};
+        var variableRegex = /\{\{(.*?)\}\}/g;
         return {
+
+            /**
+             * Stores the given translation object in the current language cache
+             * @param {object} The translation object
+             */
             set: function( item ) {
-                _store_[ currentLanguage ] = item;
+                store[ currentLanguage ] = item;
             },
-            get: function( name ) {
-                var translations =  _store_[ currentLanguage ];
+
+            /**
+             * Returns the translation given the current language, the given name property and the optional
+             * values replacement in case of template message
+             * @param {String} The name of translation property
+             * @param {object} The key/value map of variable / values to replace in the translation content
+             */
+            get: function( name , values ) {
+                var translations =  store[ currentLanguage ];
                 var result = translations;
                 name
                     .split('.')
                     .forEach( function( property ) {
                         result = result[ property ];
                     });
+                if( values ) {
+                    variables = result.match( variableRegex );
+                    for( key in values ) {
+                        variables.forEach( function( variable ) {
+                            if( variable.indexOf( key ) !== -1 ) {
+                                result = result.replace( variable , values[ key ] );
+                            }
+                        })
+                    }
+                }
                 return result;
             }
         }
