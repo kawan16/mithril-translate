@@ -46,18 +46,21 @@ The `mx.translate.use` function sets ( or returns ) the current translation lang
 The `mx.translate.use` expects to get an javascript object which contains translations through its properties such as: 
 ```js
 {
-    'a-translation-identifier' : 'A translation',
-    'another-translation-identifier' : 'Another translation',
-    'a-nested-translation' : {
+    'a-translation-id' : 'A translation',
+    'another-translation-id' : 'Another translation',
+    'a-nested-translation-id' : {
         'nested-translation-id-one' : 'Nested translation one',
         'nested-translation-id-two' : 'Nested translation one'
     }
 }
 ```
 
-
-
 ### The `mx.translate` function
 
-Once configuring and setting a language, the `mx.translate` is very easy to use. 
+Once configuring and setting a language, the `mx.translate` is very easy to use. Given the property path, the function returns the translation.
 
+```js
+    // Suppose the above translation file
+    mx.translate( 'a-translation-id' ); // Returns  'A translation'
+    mx.translate( 'a-nested-translation-id.nested-translation-id-one'); // Returns 'Nested translation one' 
+```
