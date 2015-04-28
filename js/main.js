@@ -43,6 +43,33 @@ var content = {}
 content.view = function( controller ) {
     return [
         m( '.ui.segment' ,
+            m( '.ui.hidden.divider' ),
+
+            m( '.ui.grid' ,
+                m( '.four.wide.column',
+                    m( '.ui.action.input' ,
+                        m( 'input' ,
+                            {
+                                type: 'text',
+                                value: controller.name(),
+                                placeholder: mx.translate( 'ask-name' ),
+                                onchange:  m.withAttr( 'value' , controller.name )
+                            }
+                        ),
+                        m( 'button' ,
+                            {
+                                class: 'ui icon button',
+                            },
+                            m( 'i' , 'OK' )
+                        )
+                    )
+                ),
+                m( '.five.wide.column', m('h2' , mx.translate( 'welcome-name' , { name: controller.name() } ) ) )
+            ),
+            m( '.ui.hidden.divider' )
+        ),
+        m( '.ui.hidden.divider' ),
+        m( '.ui.segment' ,
             m( '.ui.grid'  ,
                 m( '.six.wide.column' ,
                     m ( 'img' ,
@@ -65,6 +92,9 @@ content.view = function( controller ) {
 
 
 var main = {};
+main.controller = function() {
+    this.name = m.prop('');
+};
 main.view = function( controller ) {
     return [
         m( '.ui.hidden.divider' ),
