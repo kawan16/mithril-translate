@@ -43,3 +43,7 @@ The `mx.translate.use` function sets ( or returns ) the current translation lang
   mx.translate.use(); // Return 'en'
 ```
 
+### The `mx.translate` function
+
+Once configuring and setting a language, the `mx.translate` is very easy to use. 
+
