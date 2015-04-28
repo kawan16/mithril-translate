@@ -72,7 +72,7 @@ Translation contents can contain variables which will be instantiated at transla
 ```js
 // In the translation file
 {
-    'welcome' : 'Welcome {{$name}}',
+    'welcome' : 'Welcome {{name}}',
 }
 
 // In the application js file
