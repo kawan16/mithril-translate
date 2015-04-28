@@ -1,10 +1,9 @@
 Mithril Translate [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 =================
 
-Mithril Translate is a library which allows to internationalize your mithril applications.
+Mithril Translate is a library which allows to internationalize your mithril applications including lazy loading and variable replacement.
 
 ## Get Started
-
 
 One way to use Mithril Translate: download this project, get the `dist` folder files and link to mithril and mithril-translate in the head of your app:
 
@@ -26,8 +25,21 @@ Take a look at http://kawan16.github.io/mithril-translate/ and see Mithril-trans
 
 First, you need to initialize the translations environment mainly by calling the `mx.translate.configure` and passing it configuration options.
 
+```js
+  mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+```
+The method accepts the following options:
+
+* *infix* : the infix string which allows to access to remote translations files
+* *suffix* : the suffix of the translation files
+
+### The `mx.translate.use` function
+
+The `mx.translate.use` function sets ( or returns ) the current translation language. By calling it with a given language path filename, the related translation file will be loaded ( if it has not been done yet ) by using the `infix` and `suffix` from the configuration options.
 
 ```js
   mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+  mx.translate.use( 'en' ); // Load the translation file located at '/i18n/en.json'
+  mx.translate.use(); // Return 'en'
 ```
 
