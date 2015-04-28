@@ -62,7 +62,7 @@ Once configuring and setting a language, the `mx.translate` is very easy to use.
 ```js
     // Suppose the above translation file
     mx.translate( 'home' ); // Returns  'Home'
-    mx.translate( 'component.widgetA-title'); // Returns 'Widget A' 
+    mx.translate( 'component.widgetA-title' ); // Returns 'Widget A' 
 ```
 
 #### Variable replacement
