@@ -37,8 +37,8 @@
                         result = result[ property ];
                     });
                 if( values ) {
-                    variables = result.match( variableRegex );
-                    for( key in values ) {
+                    var variables = result.match( variableRegex );
+                    for( var key in values ) {
                         variables.forEach( function( variable ) {
                             if( variable.indexOf( key ) !== -1 ) {
                                 result = result.replace( variable , values[ key ] );
@@ -99,11 +99,11 @@
     var storage = new Storage();
 
     /**
-     * Returns the translation of a given item name in the optional given or current language
+     * Returns the translation of a given item name with optional variable/value substitution
      */
-    mx.translate = function( item ) {
+    mx.translate = function( item , values ) {
         validators.string( item );
-        return storage.get( item );
+        return storage.get( item , values );
     };
 
     /**
