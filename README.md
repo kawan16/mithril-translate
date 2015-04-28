@@ -64,3 +64,19 @@ Once configuring and setting a language, the `mx.translate` is very easy to use.
     mx.translate( 'home' ); // Returns  'Home'
     mx.translate( 'component.widgetA-title'); // Returns 'Widget A' 
 ```
+
+#### Variable replacement
+
+Translation contents can contain variables which will be instantiated at translation call. We use the interpolation symbols `{{}}` in order specify a variable. We pass the variable settings in a key / value object as the second paramater of the `mx.translate` function. Suppose:
+
+```js
+// In the translation file
+{
+    'welcome' : 'Welcome {{$name}}',
+}
+
+// In the application js file
+mx.translate( 'welcome' , { name: 'Kawan16' } ); // Returns 'Welcome Kawan16'
+
+```
+
