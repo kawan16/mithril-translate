@@ -58,7 +58,7 @@ module.exports = function (grunt) {
                 },
                 options: {
                     mangle:false,
-                    sourceMap: '<%= config.dist %>/mithril-translate.js.map',
+                    sourceMap: './mithril-translate.js.map',
                     sourceMapRoot: 'http://localhost/',
                     banner: '/*! <%= grunt.template.today("yyyy-mm-dd") %> */\n'
                 }
