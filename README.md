@@ -55,6 +55,8 @@ The `mx.translate.use` expects to get an javascript object which contains transl
 }
 ```
 
+#### Inline translations
+
 You may use local/inline/static translations for a given language by passing a translation object as second paramater of the `mx.translate.use` function:
 
 ```js
