@@ -117,14 +117,26 @@
     /**
      * Get / Set the language
      */
-    mx.translate.use = function( languageToUse ) {
+    mx.translate.use = function( languageToUse , optionalTranslations ) {
         if( languageToUse && currentLanguage !== languageToUse ) {
             validators.string( languageToUse );
-            $load( languageToUse );
+            if( optionalTranslations ) {
+                $store( languageToUse , optionalTranslations );
+            } else {
+                $load( languageToUse );
+            }
         } else {
             return currentLanguage;
         }
     };
+
+    /**
+     * Stores static translations for a given language
+     */
+    function $store( languageToUse , translationsToStore ) {
+        currentLanguage = languageToUse || currentLanguage;
+        storage.set( translationsToStore );
+    }
 
     /**
      * Load the given language translation file
