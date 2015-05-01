@@ -55,6 +55,19 @@ The `mx.translate.use` expects to get an javascript object which contains transl
 }
 ```
 
+You may use local/inline/static translations for a given language by passing a translation object as second paramater of the `mx.translate.use` function:
+
+```js
+// In this case, no need to configure infix or suffix
+
+var enTranslations = {
+    hello: 'Hello !'
+};
+mx.translate.use( 'en' , enTranslations );
+mx.translate( 'hello' ); // returns 'Hello !'
+
+```
+
 ### The `mx.translate` function
 
 Once configuring and setting a language, the `mx.translate` is very easy to use. Given the property path, the function returns the translation.
