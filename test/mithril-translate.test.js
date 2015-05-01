@@ -62,6 +62,11 @@ describe('mx.translate' , function() {
         expect( call( 156 ) ).toThrowError( TypeError );
     });
 
+    it( 'should return undefined given a wrong identifier' , function() {
+        mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+        mx.translate.use( 'en' );
+        expect( mx.translate( 'wrongKey' ) ).not.toBeDefined();
+    });
 
     it( 'should return the correct translation given a given simple identifier' , function( ) {
         mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
@@ -90,6 +95,19 @@ describe('mx.translate' , function() {
 
         mx.translate.use( 'fr' );
         expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.fr.chapterOne.title );
+    })
+
+    it( 'should return the correct translation given a set of inline translations' , function( ) {
+        var translations = {
+            hello : 'hello',
+            nested : {
+                seeYou: 'See you'
+            }
+        };
+
+        mx.translate.use( 'en' , translations );
+        expect( mx.translate( 'hello' ) ).toEqual( translations.hello );
+        expect( mx.translate( 'nested.seeYou' ) ).toEqual( translations.nested.seeYou );
     })
 
 });
