@@ -82,7 +82,7 @@ Once configuring and setting a language, the `mx.translate` is very easy to use.
 
 #### Variable replacement
 
-Translation contents can contain variables which will be instantiated at translation call. We use the interpolation symbols `{{}}` in order specify a variable. We pass the variable settings in a key / value object as the second paramater of the `mx.translate` function. Suppose:
+Translation content can contain variables which will be instantiated at translation call. We use the interpolation symbols `{{}}` in order specify a variable. We pass the variable settings in a key / value object as the second paramater of the `mx.translate` function. Suppose:
 
 ```js
 // In the translation file
@@ -92,6 +92,32 @@ Translation contents can contain variables which will be instantiated at transla
 
 // In the application js file
 mx.translate( 'welcome' , { name: 'Kawan16' } ); // Returns 'Welcome Kawan16'
+
+```
+
+#### Pluralization
+
+You can define and use pluralization ( and mix it with variable replacement ). 
+
+```js
+// In the translation file
+{
+    'viewing' : {
+        '0' : 'Nobody is viewing',
+        '1' : '{{ person1 }} is viewing',
+        '2' : '{{ person1 }} and {{ person2 }} are viewing',
+        'other' : 'Several persons are viewing'
+    }
+}
+
+// In the application js file
+
+// Only pluralization index
+mx.translate( 'welcome' , '0' ); // Returns 'Nobody is viewing'
+
+// Pluralization index and variable assignment
+mx.translate( 'welcome' , { person1: 'Kawan16' } , '0' ); // Returns 'Kawan16 is viewing'
+mx.translate( 'welcome' , { person1: 'Kawan16' , person2: 'Toto' } , '0' ); // Returns 'Kawan16 and Toto are viewing'
 
 ```
 
