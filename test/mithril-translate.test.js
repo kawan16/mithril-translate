@@ -62,52 +62,98 @@ describe('mx.translate' , function() {
         expect( call( 156 ) ).toThrowError( TypeError );
     });
 
-    it( 'should return undefined given a wrong identifier' , function() {
-        mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
-        mx.translate.use( 'en' );
-        expect( mx.translate( 'wrongKey' ) ).not.toBeDefined();
+    describe( 'only with identifier ', function( ) {
+
+        it( 'should return undefined given a wrong identifier' , function() {
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'wrongKey' ) ).not.toBeDefined();
+        });
+
+        it( 'should return the correct translation given a given simple identifier' , function( ) {
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'title' ) ).toEqual( i18n.en.title );
+            expect( mx.translate( 'sample' ) ).toEqual( i18n.en.sample );
+
+            mx.translate.use( 'de' );
+            expect( mx.translate( 'title' ) ).toEqual( i18n.de.title );
+            expect( mx.translate( 'sample' ) ).toEqual( i18n.de.sample );
+
+            mx.translate.use( 'fr' );
+            expect( mx.translate( 'title' ) ).toEqual( i18n.fr.title );
+            expect( mx.translate( 'sample' ) ).toEqual( i18n.fr.sample );
+        });
+
+        it( 'should return the correct translation given a given nested identifier' , function( ) {
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.en.chapterOne.title );
+
+            mx.translate.use( 'de' );
+            expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.de.chapterOne.title );
+
+            mx.translate.use( 'fr' );
+            expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.fr.chapterOne.title );
+        });
+
     });
 
-    it( 'should return the correct translation given a given simple identifier' , function( ) {
-        mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
 
-        mx.translate.use( 'en' );
-        expect( mx.translate( 'title' ) ).toEqual( i18n.en.title );
-        expect( mx.translate( 'sample' ) ).toEqual( i18n.en.sample );
+    describe( 'with identifier and variable replacement' , function( ) {
 
-        mx.translate.use( 'de' );
-        expect( mx.translate( 'title' ) ).toEqual( i18n.de.title );
-        expect( mx.translate( 'sample' ) ).toEqual( i18n.de.sample );
+        it( 'should return the correct translation' , function( ) {
+            var expectedTranslation = 'This is your message: "Superbe message"';
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
 
-        mx.translate.use( 'fr' );
-        expect( mx.translate( 'title' ) ).toEqual( i18n.fr.title );
-        expect( mx.translate( 'sample' ) ).toEqual( i18n.fr.sample );
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'message' , { message: 'Superbe message'} ) ).toBe( expectedTranslation );
+        })
+
     });
 
-    it( 'should return the correct translation given a given nested identifier' , function( ) {
-        mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+    describe( 'with identifier and count' , function( ) {
 
-        mx.translate.use( 'en' );
-        expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.en.chapterOne.title );
+        it( 'should return the correct translation' , function( ) {
+            var expectedTranslation = 'This is your message: "Superbe message"';
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
 
-        mx.translate.use( 'de' );
-        expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.de.chapterOne.title );
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'message' , { message: 'Superbe message'} ) ).toBe( expectedTranslation );
+        });
 
-        mx.translate.use( 'fr' );
-        expect( mx.translate( 'chapterOne.title' ) ).toEqual( i18n.fr.chapterOne.title );
-    })
+    });
 
-    it( 'should return the correct translation given a set of inline translations' , function( ) {
-        var translations = {
-            hello : 'hello',
-            nested : {
-                seeYou: 'See you'
-            }
-        };
+    describe( 'with identifier, a placeholder mapping and count' , function( ) {
 
-        mx.translate.use( 'en' , translations );
-        expect( mx.translate( 'hello' ) ).toEqual( translations.hello );
-        expect( mx.translate( 'nested.seeYou' ) ).toEqual( translations.nested.seeYou );
-    })
+        it( 'should return the correct translation' , function( ) {
+            var expectedTranslation = 'John Doe and her wife are viewing';
+            mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
+
+            mx.translate.use( 'en' );
+            expect( mx.translate( 'viewing' , { person1: 'John Doe' , person2:"her wife" } , '2' ) ).toBe( expectedTranslation );
+        });
+
+    });
+
+    describe('with inline translations' , function( ) {
+
+        it( 'should return the correct translation' , function( ) {
+            var translations = {
+                hello : 'hello',
+                nested : {
+                    seeYou: 'See you'
+                }
+            };
+
+            mx.translate.use( 'fr' , translations );
+            expect( mx.translate( 'hello' ) ).toEqual( translations.hello );
+            expect( mx.translate( 'nested.seeYou' ) ).toEqual( translations.nested.seeYou );
+        });
+
+    });
+
 
 });
