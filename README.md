@@ -95,3 +95,7 @@ mx.translate( 'welcome' , { name: 'Kawan16' } ); // Returns 'Welcome Kawan16'
 
 ```
 
+## History
+
+* 0.1.0 - Initial Release
+    * 0.1.1 - Pluralization   
