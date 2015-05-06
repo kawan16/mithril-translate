@@ -116,8 +116,8 @@ You can define and use pluralization ( and mix it with variable replacement ).
 mx.translate( 'viewing' , '0' ); // Returns 'Nobody is viewing'
 
 // Pluralization index and variable assignment
-mx.translate( 'viewing' , { person1: 'Kawan16' } , '0' ); // Returns 'Kawan16 is viewing'
-mx.translate( 'viewing' , { person1: 'Kawan16' , person2: 'Toto' } , '0' ); // Returns 'Kawan16 and Toto are viewing'
+mx.translate( 'viewing' , { person1: 'Kawan16' } , '1' ); // Returns 'Kawan16 is viewing'
+mx.translate( 'viewing' , { person1: 'Kawan16' , person2: 'Toto' } , '2' ); // Returns 'Kawan16 and Toto are viewing'
 
 ```
 
