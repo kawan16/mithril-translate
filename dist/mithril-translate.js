@@ -101,9 +101,22 @@
     /**
      * Returns the translation of a given item name with optional variable/value substitution
      */
-    mx.translate = function( item , values ) {
+    mx.translate = function( item ) {
         validators.string( item );
-        return storage.get( item , values );
+        if( arguments.length > 1  ) {
+            var secondParameter = arguments[ 1 ];
+            if( arguments.length === 3 ) {
+                var thirdParameter = arguments[ 2 ];
+                return storage.get( item + '.' + thirdParameter , secondParameter );
+            } else if( typeof secondParameter === 'object' )  {
+                return storage.get( item , secondParameter );
+            } else {
+                return storage.get( item + '.' + secondParameter );
+            }
+        }
+        else {
+            return storage.get( item );
+        }
     };
 
     /**
