@@ -99,3 +99,7 @@ mx.translate( 'welcome' , { name: 'Kawan16' } ); // Returns 'Welcome Kawan16'
 
 * 0.1.0 - Initial Release
     * 0.1.1 - Pluralization   
+
+## License
+
+Licensed under the MIT license.
