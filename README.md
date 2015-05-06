@@ -113,11 +113,11 @@ You can define and use pluralization ( and mix it with variable replacement ).
 // In the application js file
 
 // Only pluralization index
-mx.translate( 'welcome' , '0' ); // Returns 'Nobody is viewing'
+mx.translate( 'viewing' , '0' ); // Returns 'Nobody is viewing'
 
 // Pluralization index and variable assignment
-mx.translate( 'welcome' , { person1: 'Kawan16' } , '0' ); // Returns 'Kawan16 is viewing'
-mx.translate( 'welcome' , { person1: 'Kawan16' , person2: 'Toto' } , '0' ); // Returns 'Kawan16 and Toto are viewing'
+mx.translate( 'viewing' , { person1: 'Kawan16' } , '0' ); // Returns 'Kawan16 is viewing'
+mx.translate( 'viewing' , { person1: 'Kawan16' , person2: 'Toto' } , '0' ); // Returns 'Kawan16 and Toto are viewing'
 
 ```
 
