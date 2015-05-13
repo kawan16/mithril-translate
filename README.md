@@ -1,7 +1,7 @@
 Mithril Translate [![Built with Grunt](https://cdn.gruntjs.com/builtwith.png)](http://gruntjs.com/)
 =================
 
-[![Code Climate](https://codeclimate.com/github/kawan16/mithril-translate/badges/gpa.svg)](https://codeclimate.com/github/kawan16/mithril-translate)
+[![Build Status](https://travis-ci.org/kawan16/mithril-translate.svg?branch=master)](https://travis-ci.org/kawan16/mithril-translate) [![Code Climate](https://codeclimate.com/github/kawan16/mithril-translate/badges/gpa.svg)](https://codeclimate.com/github/kawan16/mithril-translate)
 
 Mithril Translate is a library which allows to internationalize your mithril applications including lazy loading and variable replacement.
 
