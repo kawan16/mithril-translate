@@ -8,7 +8,7 @@
 
 /* Main component */
 
-var menu = {}
+var menu = {};
 menu.view = function( controller ) {
     return [
         m( '.ui.menu' ,
@@ -58,7 +58,7 @@ content.view = function( controller ) {
                         ),
                         m( 'button' ,
                             {
-                                class: 'ui icon button',
+                                class: 'ui icon button'
                             },
                             m( 'i' , 'OK' )
                         )
