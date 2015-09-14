@@ -128,7 +128,7 @@ mx.translate( 'viewing' , { person1: 'Kawan16' , person2: 'Toto' } , '2' ); // R
 
 * 0.1.0 - Initial Release
     * 0.1.1 - Pluralization   
-    * 0.1.2 Fix [#2](https://github.com/kawan16/mithril-translate/issues/2) / Synchronized translations loading
+    * 0.1.2 - Fix [#2](https://github.com/kawan16/mithril-translate/issues/2) / Synchronized translations loading
 
 ## License
 
