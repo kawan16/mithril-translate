@@ -136,7 +136,7 @@
             if( optionalTranslations ) {
                 $store( languageToUse , optionalTranslations );
             } else {
-                $load( languageToUse );
+                return $load( languageToUse );
             }
         } else {
             return currentLanguage;
@@ -147,19 +147,29 @@
      * Stores static translations for a given language
      */
     function $store( languageToUse , translationsToStore ) {
+        m.startComputation();
         currentLanguage = languageToUse || currentLanguage;
         storage.set( translationsToStore );
+        m.endComputation();
     }
 
     /**
-     * Load the given language translation file
+     * Load the given language translation file and returns the promise of its loading
      */
     function $load( languageToLoad ) {
+        m.startComputation();
+        var deferred = m.deferred();
         m.request( { method: "GET", url: $infix() + languageToLoad + $suffix()  } )
             .then( function( translations ) {
                 currentLanguage = languageToLoad || currentLanguage;
                 storage.set( translations );
+                deferred.resolve();
+                m.endComputation();
+            }, function( error ) {
+                deferred.reject( error );
+                m.endComputation();
             });
+        return deferred.promise;
     }
 
     /**
