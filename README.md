@@ -37,11 +37,12 @@ The method accepts the following options:
 
 ### The `mx.translate.use` function
 
-The `mx.translate.use` function sets ( or returns ) the current translation language. By calling it with a given language path filename, the related translation file will be loaded ( if it has not been done yet ) by using the `infix` and `suffix` from the configuration options.
+The `mx.translate.use` function sets ( or returns ) the current translation language. By calling it with a given language path filename, the related translation file will be loaded ( if it has not been done yet ) by using the `infix` and `suffix` from the configuration options.Note that the function will return the promise resolved when the file has been loaded.
 
 ```js
   mx.translate.configure( { infix: '/i18n/' , suffix: '.json' } );
-  mx.translate.use( 'en' ); // Load the translation file located at '/i18n/en.json'
+  mx.translate.use( 'en' ) // Load the translation file located at '/i18n/en.json'
+    .then( function( ) { /* Do some translation for instance, or mount your Mithril component */ } );
   mx.translate.use(); // Return 'en'
 ```
 
@@ -127,6 +128,7 @@ mx.translate( 'viewing' , { person1: 'Kawan16' , person2: 'Toto' } , '2' ); // R
 
 * 0.1.0 - Initial Release
     * 0.1.1 - Pluralization   
+    * 0.1.2 Fix [#2](https://github.com/kawan16/mithril-translate/issues/1) / Synchronized loading
 
 ## License
 
